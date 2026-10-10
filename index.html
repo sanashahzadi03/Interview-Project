@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interview Practice Tracker</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- ================= NAVBAR ================= -->
+      <header class="nav">
+        <div class="nav-icons">
+          <a
+            href="#home"
+            class="icon icon-dark"
+            data-go="home"
+            aria-label="Profile"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+            </svg>
+          </a>
+          <a
+            href="#add"
+            class="icon icon-light"
+            data-go="add"
+            aria-label="Add question"
+            >+</a
+          >
+        </div>
+
+        <nav class="nav-links">
+          <a href="#home" data-go="home">Home</a>
+          <a href="#dashboard" data-go="dashboard">Dashboard</a>
+          <a href="#questions" data-go="questions">Questions</a>
+          <a href="#progress" data-go="progress">Progress</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="#questions" class="btn btn-outline" data-go="questions"
+            >Search</a
+          >
+          <a href="#add" class="btn btn-filled" data-go="add">Add</a>
+        </div>
+      </header>
+
+      <main>
+        <!-- ================= HOME PAGE ================= -->
+        <section class="page-view" id="home">
+          <!-- Hero banner -->
+          <div class="hero">
+            <button class="arrow arrow-left" aria-label="Previous">
+              &lsaquo;
+            </button>
+            <button class="arrow arrow-right" aria-label="Next">
+              &rsaquo;
+            </button>
+
+            <div class="banner">
+              <div class="banner-text">
+                <p class="logo">InterviewPrep</p>
+                <h1>Interview Prep</h1>
+                <p class="subtitle">
+                  Track your weekly DSA, Git and technical practice in one
+                  place.
+                </p>
+                <a href="#dashboard" class="banner-link" data-go="dashboard"
+                  >Open Dashboard</a
+                >
+              </div>
+
+              <div class="dots">
+                <span class="on"></span><span></span><span></span>
+              </div>
+
+              <!-- HERO IMAGE -->
+              <img class="hero-img" src="/Assests/anime.jpg" alt="Hero image" />
+            </div>
+          </div>
+
+          <!-- 4 columns below the hero -->
+          <div class="home-grid">
+            <!-- Column 1: Features -->
+            <div>
+              <h2 class="title">Features &rsaquo;</h2>
+
+              <div class="feature-tiles">
+                <a href="#dashboard" class="tile" data-go="dashboard">
+                  <!-- IMAGE: images/dashboard.jpg -->
+                  <img src="/Assests/Dashboard.jpg" alt="" />
+                  <span class="tile-name">Dashboard</span>
+                </a>
+
+                <a href="#add" class="tile tile-alt" data-go="add">
+                  <!-- IMAGE: images/add-question.jpg -->
+                  <img src="/Assests/Que.jpg" alt="" />
+                  <span class="tile-name">Add Question</span>
+                </a>
+              </div>
+
+              <a href="#progress" class="card wide-btn" data-go="progress"
+                >Progress</a
+              >
+            </div>
+
+            <!-- Column 2: Quick filters -->
+            <div>
+              <h2 class="title">Quick Filters</h2>
+              <div class="pills">
+                <a href="#questions" class="pill" data-go="questions"
+                  >DSA questions</a
+                >
+                <a href="#questions" class="pill" data-go="questions"
+                  >Git questions</a
+                >
+                <a href="#questions" class="pill" data-go="questions"
+                  >Technical questions</a
+                >
+                <a href="#questions" class="pill" data-go="questions"
+                  >In progress</a
+                >
+                <a href="#questions" class="pill" data-go="questions"
+                  >Completed</a
+                >
+              </div>
+            </div>
+
+            <!-- Column 3: Two image chips (Machine Coding + Interview Qs) -->
+            <div class="chips">
+              <div class="chip">
+                <span class="chip-x">&times;</span>
+                <a href="#dashboard" class="tile" data-go="dashboard">
+                  <!-- IMAGE: images/img1.jpg -->
+                  <img src="/Assests/img1.jpg" alt="" />
+                  <span class="tile-name">Machine Coding</span>
+                </a>
+              </div>
+
+              <div class="chip">
+                <span class="chip-x">&times;</span>
+                <a href="#questions" class="tile tile-alt" data-go="questions">
+                  <!-- IMAGE: images/img2.jpg -->
+                  <img src="/Assests/img2.jpg" alt="" />
+                  <span class="tile-name">Interview Qs</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Column 4: Category cards with small icon -->
+            <div class="side-cards">
+              <a href="#questions" class="card side-card" data-go="questions">
+                <!-- IMAGE: images/dsa.jpg -->
+                <span class="icon-box"
+                  ><img
+                    src="/Assests/DSA.jpg
+                "
+                    alt=""
+                /></span>
+                <span>DSA</span>
+              </a>
+              <a href="#questions" class="card side-card" data-go="questions">
+                <!-- IMAGE: images/git.jpg -->
+                <span class="icon-box"
+                  ><img src="/Assests/G.jpg" alt=""
+                /></span>
+                <span>Git</span>
+              </a>
+              <a href="#questions" class="card side-card" data-go="questions">
+                <!-- IMAGE: images/technical.jpg -->
+                <span class="icon-box"
+                  ><img src="/Assests/Tech.jpg" alt=""
+                /></span>
+                <span>Technical</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= DASHBOARD PAGE ================= -->
+        <section class="page-view" id="dashboard" hidden>
+          <div class="banner banner-small">
+            <a href="#home" class="back" data-go="home">&lsaquo; Home</a>
+            <h1>Dashboard</h1>
+            <p class="subtitle">Your weekly prep at a glance.</p>
+          </div>
+
+          <div class="stats">
+            <div class="tile">
+              <!-- IMAGE: images/stat-total.jpg -->
+              <img src="/Assests/1.jpg" alt="" />
+              <span class="tile-name"
+                ><strong id="stat-total">0</strong>Total questions</span
+              >
+            </div>
+            <div class="tile tile-alt">
+              <!-- IMAGE: images/stat-dsa.jpg -->
+              <img src="/Assests/2.jpg" alt="" />
+              <span class="tile-name"
+                ><strong id="stat-dsa">0</strong>DSA completed</span
+              >
+            </div>
+            <div class="tile">
+              <!-- IMAGE: images/stat-interview.jpg -->
+              <img src="/Assests/3.jpg" alt="" />
+              <span class="tile-name"
+                ><strong id="stat-interview">0</strong>Interview questions
+                completed</span
+              >
+            </div>
+            <div
+              class="tile tile-alt"
+              id="machine-tile"
+              title="Click to change status"
+            >
+              <!-- IMAGE: images/stat-machine.jpg -->
+              <img src="/Assests/4.jpg" alt="" />
+              <span class="tile-name"
+                ><strong id="stat-machine">Not Started</strong>Machine coding
+                status</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ADD QUESTION PAGE ================= -->
+        <section class="page-view" id="add" hidden>
+          <div class="banner banner-small">
+            <a href="#home" class="back" data-go="home">&lsaquo; Home</a>
+            <h1>Add Question</h1>
+            <p class="subtitle">Save a question to this week's list.</p>
+          </div>
+
+          <form class="card form" id="question-form" novalidate>
+            <div class="field">
+              <label for="title">Question</label>
+              <input
+                id="title"
+                type="text"
+                placeholder="e.g. Two Sum problem"
+              />
+              <small class="error" id="title-error" hidden
+                >Enter a question title.</small
+              >
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="category">Category</label>
+                <select id="category">
+                  <option value="">Select</option>
+                  <option>DSA</option>
+                  <option>Git</option>
+                  <option>Technical</option>
+                </select>
+                <small class="error" id="category-error" hidden
+                  >Choose a category.</small
+                >
+              </div>
+
+              <div class="field">
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty">
+                  <option value="">Select</option>
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option>Hard</option>
+                </select>
+                <small class="error" id="difficulty-error" hidden
+                  >Choose a difficulty.</small
+                >
+              </div>
+
+              <div class="field">
+                <label for="status">Status</label>
+                <select id="status">
+                  <option>Pending</option>
+                  <option>In Progress</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Save question</button>
+          </form>
+        </section>
+
+        <!-- ================= QUESTIONS PAGE ================= -->
+        <section class="page-view" id="questions" hidden>
+          <div class="banner banner-small">
+            <a href="#home" class="back" data-go="home">&lsaquo; Home</a>
+            <h1>Questions</h1>
+            <p class="subtitle">Search and filter everything you've added.</p>
+          </div>
+
+          <div class="toolbar">
+            <input
+              type="search"
+              class="search"
+              id="search-input"
+              placeholder="Search questions"
+              aria-label="Search questions"
+            />
+            <div class="filters">
+              <select id="filter-category" aria-label="Category">
+                <option value="">All categories</option>
+                <option>DSA</option>
+                <option>Git</option>
+                <option>Technical</option>
+              </select>
+              <select id="filter-status" aria-label="Status">
+                <option value="">All status</option>
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+              <select id="filter-difficulty" aria-label="Difficulty">
+                <option value="">All difficulty</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Sample question cards (JS se inhe hata kar apne banayein) -->
+          <ul class="q-list" id="question-list"></ul>
+
+          <!-- Jab koi question save na ho -->
+          <div class="card state" id="empty-state" hidden>
+            <span class="icon-box state-img"
+              ><img src="images/empty.jpg" alt=""
+            /></span>
+            <h3>No questions yet</h3>
+            <p>Add your first question to start tracking.</p>
+            <a href="#add" class="btn btn-filled" data-go="add">Add question</a>
+          </div>
+
+          <!-- Jab search ya filter se kuch na mile -->
+          <div class="card state" id="no-results-state" hidden>
+            <span class="icon-box state-img"
+              ><img src="images/no-results.jpg" alt=""
+            /></span>
+            <h3>No matching questions</h3>
+            <p>Nothing matches your search or filters.</p>
+            <button class="btn btn-outline" id="clear-filters-button">
+              Clear filters
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= PROGRESS PAGE ================= -->
+        <section class="page-view" id="progress" hidden>
+          <div class="banner banner-small">
+            <a href="#home" class="back" data-go="home">&lsaquo; Home</a>
+            <h1>Progress</h1>
+            <p class="subtitle">Completion based on your saved questions.</p>
+          </div>
+
+          <div class="progress-grid">
+            <div class="card ring-card">
+              <div class="ring" id="progress-ring" style="--percent: 0">
+                <span id="progress-percent">0%</span>
+              </div>
+              <p id="progress-text">0 of 0 completed</p>
+            </div>
+
+            <div class="card bars">
+              <div class="bar-row">
+                <span>DSA</span>
+                <div class="bar"><i id="bar-dsa" style="width: 0%"></i></div>
+                <b id="pct-dsa">0%</b>
+              </div>
+              <div class="bar-row">
+                <span>Git</span>
+                <div class="bar"><i id="bar-git" style="width: 0%"></i></div>
+                <b id="pct-git">0%</b>
+              </div>
+              <div class="bar-row">
+                <span>Technical</span>
+                <div class="bar">
+                  <i id="bar-technical" style="width: 0%"></i>
+                </div>
+                <b id="pct-technical">0%</b>
+              </div>
+              <div class="bar-row">
+                <span>Machine coding</span>
+                <div class="bar">
+                  <i id="bar-machine" style="width: 0%"></i>
+                </div>
+                <b id="pct-machine">0%</b>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

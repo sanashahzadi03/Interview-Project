@@ -1,0 +1,653 @@
+/* =========================================================
+   INTERVIEW PRACTICE TRACKER  -  style.css
+
+   Sections:
+   1. Basic setup (colors, fonts)
+   2. Reusable parts (card, button, tile, badge, form)
+   3. Pages (navbar, home, dashboard, add, questions, progress)
+   4. Mobile (responsive)
+   ========================================================= */
+
+
+/* ---------- 1. BASIC SETUP ---------- */
+
+/* Colors yahan se badal sakte hain, poore design me change ho jayenge */
+:root {
+  --blue: #8da2dc;
+  --purple: #7b80b6;
+  --light: #e8ecf8;
+  --text: #1d1d28;
+  --dark: #454545;
+  --grey: #6b7088;
+  --bg: #f4f6fc;
+
+  --green: #6fbf9d;
+  --yellow: #e0b45a;
+  --red: #d9788b;
+
+  --shadow: 0 8px 20px rgba(90, 105, 160, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; padding: 0; }
+button, input, select { font: inherit; color: inherit; }
+button { border: 0; background: none; cursor: pointer; }
+/* hidden likha ho to element hamesha chhupa rahe */
+[hidden] {
+  display: none !important;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+.title {
+  margin-bottom: 18px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+
+/* ---------- 2. REUSABLE PARTS ---------- */
+
+/* White rounded box */
+.card {
+  background: white;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+.btn-outline { border: 2px solid var(--text); background: white; }
+.btn-filled  { background: var(--purple); color: white; box-shadow: var(--shadow); }
+.btn-dark    { background: var(--dark); color: white; padding: 14px; font-size: 17px; }
+
+/* TILE = image ke upar naam likha hua box.
+   Andar ki <img> poore tile ko bhar deti hai */
+.tile {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  background: linear-gradient(170deg, #6c7aa8, #43507d);   /* image na ho to ye rang dikhega */
+}
+.tile-alt {
+  background: linear-gradient(170deg, #8a9bd8, #5b6ab0);
+}
+.tile img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* image ko kati bina poora fit karta hai */
+}
+.tile-name {
+  position: relative;       /* image ke upar dikhne ke liye */
+  width: 100%;
+  padding: 30px 10px 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(to top, rgba(40, 48, 90, 0.75), transparent);
+}
+.tile-name strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+/* Chhota square jisme image hoti hai (icons) */
+.icon-box {
+  display: block;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--light);
+}
+.icon-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Blue banner (home hero aur har page ka upar wala header) */
+.banner {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 48px 56px;
+  border-radius: 22px;
+  color: white;
+  box-shadow: var(--shadow);
+  background:
+    radial-gradient(2px 2px at 12% 20%, white 50%, transparent 52%),
+    radial-gradient(2px 2px at 44% 70%, white 50%, transparent 52%),
+    radial-gradient(2px 2px at 68% 25%, white 50%, transparent 52%),
+    linear-gradient(170deg, #8fa4de, #8193cf);
+}
+.banner h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1.1;
+}
+.subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Form ke fields */
+.field label {
+  display: block;
+  margin: 0 0 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--grey);
+}
+.field input,
+.field select {
+  width: 100%;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 16px;
+    background-color: var(--light);
+  box-shadow: var(--shadow);
+  font-size: 15px;
+}
+select {
+  appearance: none;                       /* browser ka default arrow hatao */
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+}
+.field select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%237b80b6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+}
+
+/* Error message (JS se hidden hata kar dikhayein) */
+.error {
+  display: block;
+  margin: 6px 0 0 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #c0425a;
+}
+.invalid {
+  background: #fdeef1 !important;
+  box-shadow: 0 0 0 2px var(--red) !important;
+}
+
+/* Badges (difficulty + status) */
+.badge {
+  display: inline-block;
+  margin: 10px 6px 0 0;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: white;
+}
+.easy    { background: var(--green); }
+.medium  { background: var(--yellow); }
+.hard    { background: var(--red); }
+.pending  { background: #ececf1; color: #5c6075; }
+.progress { background: #dfe6fa; color: #4a5aa6; }
+.done     { background: #d6f0e4; color: #2c7a58; }
+
+
+/* ---------- 3. PAGES ---------- */
+
+/* ----- Navbar ----- */
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+.nav-icons { display: flex; gap: 14px; }
+.icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: white;
+  font-size: 28px;
+  box-shadow: var(--shadow);
+}
+.icon-dark  { background: #555; }
+.icon-light { background: linear-gradient(135deg, #a9b8e6, #7f8fcb); }
+
+.nav-links { display: flex; gap: 40px; }
+.nav-links a {
+  padding: 4px 2px 6px;
+  font-size: 17px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+.nav-links a:hover,
+.nav-links a.active { border-bottom-color: var(--text); }
+
+.nav-actions { display: flex; justify-content: flex-end; gap: 14px; }
+
+
+/* ----- Home: hero banner ----- */
+.hero {
+  position: relative;
+  margin-top: 40px;
+  padding: 0 40px;
+}
+.hero .banner { min-height: 340px; }
+
+.banner-text {
+  position: relative;
+  max-width: 52%;           /* text image ke upar na jaye */
+}
+.logo { margin-bottom: 36px; font-weight: 700; }
+
+.banner-link {
+  display: inline-block;
+  margin-top: 36px;
+  padding-bottom: 4px;
+  font-size: 19px;
+  font-weight: 600;
+  border-bottom: 4px solid white;
+}
+
+/* Hero ki bari image: banner ke right side me fit hoti hai */
+.hero-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  /* image ka left edge halka fade hota hai taake white background blue me mix ho jaye */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 25%);
+  mask-image: linear-gradient(to right, transparent, black 25%);
+}
+
+.dots {
+  position: absolute;
+  left: 48px;
+  bottom: 22px;
+  display: flex;
+  gap: 24px;
+}
+.dots span { width: 52px; height: 5px; border-radius: 999px; background: rgba(255, 255, 255, 0.45); }
+.dots .on  { background: white; }
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--blue);
+}
+.arrow-left  { left: 0; }
+.arrow-right { right: 0; }
+
+
+/* ----- Home: 4 columns ----- */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.7fr 1fr;
+  gap: 28px;
+  margin-top: 44px;
+  align-items: start;
+}
+
+/* Column 1 */
+.feature-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.feature-tiles .tile { height: 230px; }
+
+.wide-btn {
+  display: block;
+  margin-top: 18px;
+  padding: 14px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 16px;
+}
+
+/* Column 2 */
+.pills { display: grid; gap: 14px; }
+.pill {
+  padding: 14px 18px 14px 44px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  box-shadow: var(--shadow);
+  /* search icon */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 18px;
+}
+.pill:nth-child(1) { background-color: #9db0e3; }
+.pill:nth-child(2) { background-color: #7f93d1; }
+.pill:nth-child(3) { background-color: #7a7fb5; }
+.pill:nth-child(4) { background-color: #454545; }
+.pill:nth-child(5) { background-color: white; color: var(--text); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237b80b6' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E"); }
+
+/* Column 3: image chips */
+.chips {
+  display: grid;
+  gap: 24px;
+  padding: 14px 0 0 14px;
+}
+.chip { position: relative; }
+.chip .tile { aspect-ratio: 1 / 0.95; }
+.chip-x {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: var(--purple);
+  font-size: 26px;
+  box-shadow: var(--shadow);
+}
+
+/* Column 4 */
+.side-cards { display: grid; gap: 22px; }
+.side-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+/* ----- Inner pages: top banner ----- */
+.banner-small {
+  margin-top: 40px;
+  padding: 36px 44px 40px;
+}
+.back {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+/* ----- Dashboard ----- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 32px;
+}
+.stats .tile { height: 280px; }
+
+/* Machine coding tile par click hota hai */
+#machine-tile { cursor: pointer; }
+#stat-machine { font-size: 24px; }
+
+
+/* ----- Add question ----- */
+.form {
+  display: grid;
+  gap: 16px;
+  max-width: 640px;
+  margin: 32px auto 0;
+  padding: 28px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+
+/* ----- Questions ----- */
+.toolbar { display: grid; gap: 12px; margin: 32px 0 30px; }
+
+.search {
+  width: 100%;
+  padding: 13px 18px 13px 50px;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  font-size: 15px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 18px center;
+  background-size: 20px;
+}
+.search { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237b80b6' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E"); }
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.filters select {
+  width: 100%;
+  padding: 11px 36px 11px 16px;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  font-size: 13.5px;
+  color: white;
+  background-color: var(--blue);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+}
+.filters option { color: var(--text); }
+
+.q-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px 24px;
+  padding-left: 14px;
+}
+.q-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+.q-card h3 { font-size: 15px; font-weight: 600; line-height: 1.35; }
+
+.q-tag {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: var(--blue);
+  color: white;
+  font-weight: 600;
+}
+.q-tag.git  { background: var(--purple); }
+.q-tag.tech { background: var(--dark); }
+
+.delete {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: white;
+  color: var(--purple);
+  font-size: 26px;
+  box-shadow: var(--shadow);
+}
+
+.states-title { margin-top: 48px; }
+.states {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+
+.state {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px 24px;
+  text-align: center;
+}
+.state-img { width: 120px; height: 90px; }
+.state p { font-size: 14px; color: var(--grey); }
+
+.state {
+  max-width: 460px;
+  margin: 0 auto;
+}
+.state .btn { margin-top: 6px; font-size: 15px; padding: 9px 22px; }
+
+
+/* ----- Progress ----- */
+.progress-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.ring-card {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: 30px;
+}
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* --percent ki value HTML me change karein (0 se 100) */
+  background: conic-gradient(var(--purple) calc(var(--percent) * 1%), var(--light) 0);
+}
+.ring::before {
+  content: "";
+  position: absolute;
+  top: 22px; right: 22px; bottom: 22px; left: 22px;
+  border-radius: 50%;
+  background: white;
+}
+.ring span { position: relative; font-size: 40px; font-weight: 700; }
+.ring-card p { font-weight: 500; color: var(--grey); }
+
+.bars { display: grid; align-content: center; gap: 24px; padding: 30px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 48px;
+  align-items: center;
+  gap: 16px;
+  font-weight: 500;
+}
+.bar { height: 16px; overflow: hidden; border-radius: 999px; background: var(--light); }
+.bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #9db0e3, var(--purple)); }
+.bar-row b { text-align: right; }
+
+
+/* ---------- 4. MOBILE ---------- */
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .home-grid { grid-template-columns: 1fr 1fr; }
+  .chips { grid-template-columns: 1fr 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* Phone */
+@media (max-width: 760px) {
+  .page { padding: 18px 16px 48px; }
+
+  .nav { grid-template-columns: auto 1fr; row-gap: 14px; }
+  .nav-links { grid-column: 1 / -1; order: 3; justify-content: space-between; gap: 8px; }
+  .nav-links a { font-size: 15px; }
+  .btn { font-size: 15px; padding: 8px 18px; }
+
+  .hero { padding: 0; margin-top: 28px; }
+  .arrow { display: none; }
+  .hero .banner { min-height: 0; padding: 28px 22px 60px; }
+  .banner-text { max-width: 100%; }
+  .dots { left: 22px; gap: 14px; }
+  .dots span { width: 38px; }
+
+  /* Mobile par image text ke neeche aa jati hai */
+  .hero-img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: 240px;
+    margin-top: 24px;
+    border-radius: 18px;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .home-grid { grid-template-columns: 1fr; gap: 32px; }
+  .title { font-size: 24px; }
+
+  .banner-small { margin-top: 28px; padding: 26px 22px 30px; }
+  .stats { gap: 14px; }
+  .stats .tile { height: 230px; }
+  .form { padding: 20px; }
+
+  .form-row,
+  .q-list,
+  .states,
+  .progress-grid { grid-template-columns: 1fr; }
+  .filters { grid-template-columns: 1fr 1fr; }
+  .q-list { padding-left: 10px; }
+  .bar-row { grid-template-columns: 1fr 48px; }
+  .bar { grid-column: 1 / -1; grid-row: 2; }
+}
